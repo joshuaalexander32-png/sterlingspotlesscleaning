@@ -322,10 +322,6 @@
             <label for="email">Email</label>
             <input id="email" name="email" type="email" autocomplete="email" required>
           </div>
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
-          </div>
         </div>
         <div class="field">
           <label class="check" for="referred">
@@ -409,7 +405,6 @@
     var service = field("service");
     var name = field("who");
     var email = field("email");
-    var phone = field("phone");
     var sqft = Number(field("sqft"));
     var baths = Number(field("baths"));
     if (!address) problems.push("a street address");
@@ -419,7 +414,6 @@
     if (!zip) problems.push("a ZIP code");
     if (!name) problems.push("your name");
     if (!email) problems.push("an email address");
-    if (!phone) problems.push("a phone number");
     return {
       problems: problems,
       address: address,
@@ -491,7 +485,6 @@
     var body = {
       name: field("who"),
       email: field("email"),
-      phone: field("phone"),
       address: quote.address,
       zip: quote.zip,
       sqft: quote.sqft,
