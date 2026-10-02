@@ -279,7 +279,7 @@
   <section id="quote">
     <h2>Request a quote</h2>
     <div class="card">
-      <p>Tell us the home size and the kind of visit, or email <a href="mailto:sterlingspotlesscleaning@gmail.com">sterlingspotlesscleaning@gmail.com</a>. This form does not send yet.</p>
+      <p>Tell us the home size and the kind of visit, or email <a href="mailto:sterlingspotlesscleaning@gmail.com">sterlingspotlesscleaning@gmail.com</a>.</p>
       <form id="quote-form" action="#" method="post" novalidate>
         <div class="field">
           <label for="address">Street address</label>
@@ -458,7 +458,7 @@
     var included = basementExtra() > 0 ? " Basement square feet are included in the cleaning price." : "";
     render(
       "<h3>Your cleaning price</h3><div class=\"quote-lines\">" + cleaning + "</div>" +
-      "<p class=\"fine\">Travel and square footage will be confirmed by Spotless after the request." + included + " This form does not email anyone yet.</p>",
+      "<p class=\"fine\">Travel and square footage will be confirmed by Spotless after the request." + included + "</p>",
       false
     );
   }
@@ -466,22 +466,67 @@
   basementEl.addEventListener("change", paintQuote);
   document.getElementById("basement-sqft").addEventListener("input", paintQuote);
 
+  var QUOTE_ENDPOINT = "https://quote-forwarder.joshua-alexander32.workers.dev";
+
+  function checkedValue(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "";
+  }
+
+  function quoteBody(quote) {
+    var body = {
+      name: field("who"),
+      email: field("email"),
+      phone: field("phone"),
+      address: quote.address,
+      zip: quote.zip,
+      sqft: quote.sqft,
+      baths: quote.baths,
+      service: quote.service
+    };
+    var referrerName = field("referrer-name");
+    var referrerPhone = field("referrer-phone");
+    if (referrerName) body["referrer-name"] = referrerName;
+    if (referrerPhone) body["referrer-phone"] = referrerPhone;
+    if (basementEl && !basementEl.hidden) {
+      var basement = checkedValue("basement");
+      var basementSqft = field("basement-sqft");
+      var include = checkedValue("basement-include");
+      if (basement) body.basement = basement;
+      if (basementSqft) body["basement-sqft"] = Number(basementSqft);
+      if (include) body["basement-include"] = include;
+    }
+    return body;
+  }
+
   document.getElementById("quote-form").addEventListener("submit", function (event) {
     event.preventDefault();
     var quote = readQuote();
     if (quote.problems.length) {
       quoteState = null;
-      resetBasement();
-      render("<p class=\"fine\">Add " + esc(quote.problems.join(", ")) + " to see a price. This form does not email anyone yet.</p>", true);
+      render("<p class=\"fine\">Add " + esc(quote.problems.join(", ")) + " to see a price.</p>", true);
       return;
     }
-    resetBasement();
-    quoteState = {
-      sqft: quote.sqft,
-      baths: quote.baths,
-      service: quote.service
-    };
-    paintQuote();
+    var body = quoteBody(quote);
+    var button = event.target.querySelector('button[type="submit"]');
+    button.disabled = true;
+    fetch(QUOTE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    }).then(function (response) {
+      if (!response.ok) throw new Error("status " + response.status);
+      quoteState = { sqft: quote.sqft, baths: quote.baths, service: quote.service };
+      paintQuote();
+      var note = document.createElement("p");
+      note.className = "fine";
+      note.textContent = "Your request was sent. Spotless will confirm the quote by email.";
+      resultEl.appendChild(note);
+    }).catch(function () {
+      render("<p class=\"fine\">The request did not send. Email sterlingspotlesscleaning@gmail.com and we will quote it from there.</p>", true);
+    }).then(function () {
+      button.disabled = false;
+    });
   });
 </script>
 </body>
