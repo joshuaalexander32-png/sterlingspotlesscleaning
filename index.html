@@ -148,6 +148,11 @@
   .choices { display: flex; gap: 16px; margin: 0 0 12px; }
   .choices label { font-weight: 500; display: flex; gap: 6px; align-items: center; }
   .choices input { width: auto; }
+  .check { font-weight: 600; display: flex; gap: 8px; align-items: flex-start; }
+  .check input { width: auto; margin-top: 5px; }
+  .referral-note { color: var(--muted); font-size: 0.92rem; margin: 8px 0 0; }
+  #referral-name-wrap[hidden] { display: none; }
+  #referral-name-wrap { margin-top: 12px; }
   footer {
     border-top: 1px solid var(--line);
     padding: 22px 0 32px;
@@ -257,7 +262,6 @@
           </table>
         </div>
       </div>
-      <div class="note">If you refer someone and they book, you and the new client each get a $25 credit.</div>
     </div>
   </section>
 
@@ -322,14 +326,17 @@
             <label for="phone">Phone</label>
             <input id="phone" name="phone" type="tel" autocomplete="tel" required>
           </div>
-          <div class="field">
-            <label for="referrer-name">Name of the person who referred you</label>
+        </div>
+        <div class="field">
+          <label class="check" for="referred">
+            <input id="referred" name="referred" type="checkbox">
+            Were you referred to our business?
+          </label>
+          <div id="referral-name-wrap" hidden>
+            <label for="referrer-name">Referral Name</label>
             <input id="referrer-name" name="referrer-name" type="text" autocomplete="off">
           </div>
-          <div class="field">
-            <label for="referrer-phone">Phone number of the person who referred you</label>
-            <input id="referrer-phone" name="referrer-phone" type="tel" autocomplete="off">
-          </div>
+          <p class="referral-note">If the referral name is a current client, both of you receive $25 off the next cleaning.</p>
         </div>
         <div id="basement-followup" class="note followup" hidden>
           <p><strong>Do you have a basement?</strong></p>
@@ -466,6 +473,13 @@
   basementEl.addEventListener("change", paintQuote);
   document.getElementById("basement-sqft").addEventListener("input", paintQuote);
 
+  var referredEl = document.getElementById("referred");
+  var referralWrap = document.getElementById("referral-name-wrap");
+  referredEl.addEventListener("change", function () {
+    referralWrap.hidden = !referredEl.checked;
+    if (!referredEl.checked) document.getElementById("referrer-name").value = "";
+  });
+
   var QUOTE_ENDPOINT = "https://quote-forwarder.joshua-alexander32.workers.dev";
 
   function checkedValue(name) {
@@ -484,10 +498,11 @@
       baths: quote.baths,
       service: quote.service
     };
-    var referrerName = field("referrer-name");
-    var referrerPhone = field("referrer-phone");
-    if (referrerName) body["referrer-name"] = referrerName;
-    if (referrerPhone) body["referrer-phone"] = referrerPhone;
+    var referred = document.getElementById("referred");
+    if (referred && referred.checked) {
+      var referrerName = field("referrer-name");
+      if (referrerName) body["referrer-name"] = referrerName;
+    }
     if (basementEl && !basementEl.hidden) {
       var basement = checkedValue("basement");
       var basementSqft = field("basement-sqft");
