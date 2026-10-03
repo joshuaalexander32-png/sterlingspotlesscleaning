@@ -379,7 +379,8 @@
   function cleaningPrice(sqft, baths, service) {
     var mult = SERVICE_MULT[service];
     if (mult == null) return null;
-    var base = sqft * 0.15 + Math.max(0, baths - 1) * 20;
+    var tiered = Math.min(sqft, 1500) * 0.15 + Math.max(0, sqft - 1500) * 0.10;
+    var base = tiered + Math.max(0, baths - 1) * 20;
     var amount = base * mult;
     if (service === "One-time clean") amount = Math.max(base, 119);
     return roundHalfUp(amount);
