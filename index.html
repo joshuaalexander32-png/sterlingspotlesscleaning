@@ -241,9 +241,9 @@
               <tr><td>One-time</td><td class="num">$150</td></tr>
               <tr><td>Deep clean</td><td class="num">$225</td></tr>
               <tr><td>Monthly</td><td class="num">$135</td></tr>
-              <tr><td>Every other month</td><td class="num">$139</td></tr>
-              <tr><td>Quarterly</td><td class="num">$143</td></tr>
-              <tr><td>Move-out</td><td class="num">$278</td></tr>
+              <tr><td>Every other month</td><td class="num">$140</td></tr>
+              <tr><td>Quarterly</td><td class="num">$145</td></tr>
+              <tr><td>Move-out</td><td class="num">$280</td></tr>
             </tbody>
           </table>
         </div>
@@ -253,11 +253,11 @@
             <thead><tr><th>Visit</th><th class="num">Price</th></tr></thead>
             <tbody>
               <tr><td>One-time</td><td class="num">$245</td></tr>
-              <tr><td>Deep clean</td><td class="num">$368</td></tr>
-              <tr><td>Monthly</td><td class="num">$221</td></tr>
-              <tr><td>Every other month</td><td class="num">$227</td></tr>
-              <tr><td>Quarterly</td><td class="num">$233</td></tr>
-              <tr><td>Move-out</td><td class="num">$453</td></tr>
+              <tr><td>Deep clean</td><td class="num">$370</td></tr>
+              <tr><td>Monthly</td><td class="num">$220</td></tr>
+              <tr><td>Every other month</td><td class="num">$225</td></tr>
+              <tr><td>Quarterly</td><td class="num">$235</td></tr>
+              <tr><td>Move-out</td><td class="num">$455</td></tr>
             </tbody>
           </table>
         </div>
@@ -372,8 +372,8 @@
     "Move-out": 1.85
   };
 
-  function roundHalfUp(n) {
-    return Math.floor(n + 0.5 + 1e-8);
+  function roundNearest5HalfUp(n) {
+    return Math.floor(n / 5 + 0.5 + 1e-8) * 5;
   }
 
   function cleaningPrice(sqft, baths, service) {
@@ -383,7 +383,7 @@
     var base = tiered + Math.max(0, baths - 1) * 20;
     var amount = base * mult;
     if (service === "One-time clean") amount = Math.max(base, 119);
-    return roundHalfUp(amount);
+    return roundNearest5HalfUp(amount);
   }
 
   function money(n) {
