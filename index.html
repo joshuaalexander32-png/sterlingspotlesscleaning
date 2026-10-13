@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sterling Spotless Cleaning</title>
+<meta name="description" content="House cleaning plus home repair and custom services for homes in Sterling and nearby Logan County, Colorado. Request a quote online.">
 <style>
   :root {
     --ink: #1a2a30;
@@ -153,6 +154,13 @@
   .referral-note { color: var(--muted); font-size: 0.92rem; margin: 8px 0 0; }
   #referral-name-wrap[hidden] { display: none; }
   #referral-name-wrap { margin-top: 12px; }
+  .btn { display: inline-block; background: var(--teal); color: #fff; text-decoration: none; border-radius: 8px; padding: 12px 18px; }
+  .btn:hover { background: var(--teal-deep); }
+  .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ba-frame { position: relative; margin: 0; aspect-ratio: 4 / 3; border: 2px dashed #b7c6c9; border-radius: 10px; background: var(--paper); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .ba-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ba-frame figcaption { position: absolute; top: 8px; left: 8px; background: rgba(8,56,62,0.85); color: #fff; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; }
+  .ba-empty { color: var(--muted); font-size: 0.9rem; }
   footer {
     border-top: 1px solid var(--line);
     padding: 22px 0 32px;
@@ -180,17 +188,21 @@
       </div>
     </div>
     <nav>
+      <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
+      <a href="#gallery">Before &amp; After</a>
+      <a href="#reviews">Reviews</a>
       <a href="#area">Service area</a>
       <a href="#quote">Request a quote</a>
     </nav>
   </div>
   <div class="wrap hero">
-    <h1>House cleaning for homes in Sterling.</h1>
-    <p class="lede">An employee does the cleaning. The owner schedules the visit and is the person you talk with. Weekdays and Saturdays, in Sterling and nearby Logan County.</p>
+    <h1>Cleaning and home care for homes in Sterling.</h1>
+    <p class="lede">An employee does the cleaning. The owner schedules the visit and is the person you talk with. Weekdays and Saturdays, in Sterling and nearby Logan County. We also take on light home repairs and custom projects, quoted per job.</p>
     <div class="facts">
       <span>One-time, recurring, and move-out</span>
       <span>Supplies brought to the home</span>
+      <span>Home repair &amp; custom services</span>
       <span>Travel priced separately</span>
     </div>
   </div>
@@ -224,6 +236,42 @@
           <li>Vacuum and mop behind and under furniture where it can be moved safely. Vacuum upholstery and under the cushions.</li>
         </ul>
       </article>
+    </div>
+    <article class="card" id="home-repair" style="margin-top:16px">
+      <h3>Home Repair &amp; Custom Services</h3>
+      <p>Beyond cleaning, we handle smaller repair and improvement work around the home. Every project is quoted per job after we learn what you need.</p>
+      <ul>
+        <li>Light home repairs and touch-ups.</li>
+        <li>Drywall patching.</li>
+        <li>Tile work.</li>
+        <li>Fixture and cabinet work, including cabinet cleaning, restoration, and refinishing.</li>
+        <li>Other custom projects. Ask us about yours.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="gallery">
+    <h2>Before &amp; After</h2>
+    <p class="muted">Real results from real Sterling-area homes. Photos coming soon.</p>
+    <!--
+      To add photos: replace a placeholder <span class="ba-empty">...</span> with an image, e.g.
+        <img src="images/job-before.jpg" alt="Kitchen cabinets before restoration">
+      Keep the <figcaption> label. Put image files in an images/ folder next to index.html.
+      Only post photos with the client's permission. Copy a whole .card block to add more pairs.
+    -->
+    <div class="grid three">
+      <div class="card ba-pair">
+        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+      </div>
+      <div class="card ba-pair">
+        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+      </div>
+      <div class="card ba-pair">
+        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+      </div>
     </div>
   </section>
 
@@ -277,6 +325,14 @@
     <div class="card">
       <p>Sterling and nearby Logan County. Visits are on weekdays and Saturdays.</p>
       <p>Email <a href="mailto:sterlingspotlesscleaning@gmail.com">sterlingspotlesscleaning@gmail.com</a>.</p>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="card">
+      <p>Reviews coming soon. We're just getting started and would love to hear about your experience.</p>
+      <p><a class="btn" href="https://www.facebook.com/profile.php?id=61595018650031" target="_blank" rel="noopener">Leave us a review</a></p>
     </div>
   </section>
 
