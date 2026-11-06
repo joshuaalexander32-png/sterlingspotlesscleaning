@@ -157,7 +157,9 @@
   .btn { display: inline-block; background: var(--teal); color: #fff; text-decoration: none; border-radius: 8px; padding: 12px 18px; }
   .btn:hover { background: var(--teal-deep); }
   .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .ba-frame { position: relative; margin: 0; aspect-ratio: 4 / 3; border: 2px dashed #b7c6c9; border-radius: 10px; background: var(--paper); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .ba-group { margin-top: 18px; }
+  .ba-group h3 { margin: 0 0 10px; font-size: 1.05rem; }
+  .ba-frame { position: relative; margin: 0; aspect-ratio: 4 / 3; border: 2px solid var(--line); border-radius: 10px; background: var(--paper); overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .ba-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .ba-frame figcaption { position: absolute; top: 8px; left: 8px; background: rgba(8,56,62,0.85); color: #fff; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px; }
   .ba-empty { color: var(--muted); font-size: 0.9rem; }
@@ -252,25 +254,20 @@
 
   <section id="gallery">
     <h2>Before &amp; After</h2>
-    <p class="muted">Real results from real Sterling-area homes. Photos coming soon.</p>
-    <!--
-      To add photos: replace a placeholder <span class="ba-empty">...</span> with an image, e.g.
-        <img src="images/job-before.jpg" alt="Kitchen cabinets before restoration">
-      Keep the <figcaption> label. Put image files in an images/ folder next to index.html.
-      Only post photos with the client's permission. Copy a whole .card block to add more pairs.
-    -->
-    <div class="grid three">
-      <div class="card ba-pair">
-        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
-        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+    <p class="muted">Kitchen cabinet restoration from a Sterling-area home. Photos are shown as before and after groups, not as matched close-ups.</p>
+    <div class="ba-group">
+      <h3>Before</h3>
+      <div class="grid three">
+        <figure class="ba-frame"><figcaption>Before</figcaption><img src="images/before-01-kitchen-cabinets.jpg" alt="Kitchen cabinets before restoration, view 1" width="1200" height="1600" loading="lazy"></figure>
+        <figure class="ba-frame"><figcaption>Before</figcaption><img src="images/before-02-kitchen-cabinets.jpg" alt="Kitchen cabinets before restoration, view 2" width="1200" height="1600" loading="lazy"></figure>
+        <figure class="ba-frame"><figcaption>Before</figcaption><img src="images/before-03-kitchen-cabinets.jpg" alt="Kitchen cabinets before restoration, view 3" width="1200" height="1600" loading="lazy"></figure>
       </div>
-      <div class="card ba-pair">
-        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
-        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
-      </div>
-      <div class="card ba-pair">
-        <figure class="ba-frame"><figcaption>Before</figcaption><span class="ba-empty">Photo coming soon</span></figure>
-        <figure class="ba-frame"><figcaption>After</figcaption><span class="ba-empty">Photo coming soon</span></figure>
+    </div>
+    <div class="ba-group">
+      <h3>After</h3>
+      <div class="grid two">
+        <figure class="ba-frame"><figcaption>After</figcaption><img src="images/after-01-kitchen-cabinets.jpg" alt="Kitchen cabinets after restoration, view 1" width="1600" height="1200" loading="lazy"></figure>
+        <figure class="ba-frame"><figcaption>After</figcaption><img src="images/after-02-kitchen-cabinets.jpg" alt="Kitchen cabinets after restoration, view 2" width="1600" height="1200" loading="lazy"></figure>
       </div>
     </div>
   </section>
